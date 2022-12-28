@@ -12,7 +12,6 @@ class SadapayAssignmentApplicationTests : BaseTest() {
 		val context =
 			SpringApplication.run(
 			    SadapayAssignmentApplication::class.java,
-			    "--server.port=8081",
 			    "--spring.main.web-environment=false"
 			)
 
