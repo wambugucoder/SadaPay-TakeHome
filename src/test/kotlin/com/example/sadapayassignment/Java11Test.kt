@@ -10,4 +10,5 @@ class Java11Test {
         val version = System.getProperty("java.version")
         assertTrue(version.startsWith("11"))
     }
+    
 }
