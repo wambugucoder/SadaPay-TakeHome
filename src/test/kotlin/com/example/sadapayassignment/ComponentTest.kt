@@ -2,7 +2,6 @@ package com.example.sadapayassignment
 
 import com.example.sadapayassignment.Fixtures.MODEL_PACKAGE
 import com.example.sadapayassignment.Fixtures.REPO_PACKAGE
-import com.example.sadapayassignment.Fixtures.getClassesInPackage
 import com.example.sadapayassignment.utils.containsAllSpecifiedElements
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.swagger.v3.oas.models.OpenAPI
