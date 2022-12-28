@@ -7,7 +7,7 @@ fun assertNoExceptionsEncountered(block: () -> Unit) {
     try {
         block()
     } catch (e: Exception) {
-        // If an exception was caught, fail the test
+        // If an exception was caught, fail the test.
         assert(false) { "Unexpected exception: ${e.message}" }
     }
 }
