@@ -1,6 +1,7 @@
 package com.example.sadapayassignment
 
 import com.example.sadapayassignment.model.User
+import io.mockk.every
 import org.assertj.core.api.AssertionsForInterfaceTypes.*
 
 fun assertNoExceptionsEncountered(block: () -> Unit) {
@@ -20,4 +21,10 @@ fun <T> assertIgnoringId(expected: T, actual: T) {
     assertThat(actual).usingRecursiveComparison()
         .ignoringFields(*fieldsToIgnore.toTypedArray())
         .isEqualTo(expected)
+}
+
+fun <T> configureMocks(vararg mocks: T, block: T.() -> Unit) {
+    mocks.forEach { mock ->
+        every { mock.block() }
+    }
 }
