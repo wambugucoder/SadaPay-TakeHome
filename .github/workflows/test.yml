@@ -30,7 +30,7 @@ jobs:
         run: |
           mvn clean test
           mvn sonar:sonar \
-                      -Dsonar.projectKey${{secrets.PROJECT_KEY }}\
+                      -Dsonar.projectKey=${{secrets.PROJECT_KEY }}\
                       -Dsonar.organization=${{secrets.SONAR_ORG }} \
                       -Dsonar.host.url=${{secrets.SONAR_URL }} \
                       -Dsonar.login=${{secrets.SONAR_TOKEN }} \
