@@ -1,5 +1,6 @@
 package com.example.sadapayassignment
 
+import com.example.sadapayassignment.Fixtures.DISABLE_WEB_ENV_ARG
 import org.assertj.core.api.AssertionsForInterfaceTypes.*
 import org.junit.jupiter.api.Test
 import org.springframework.boot.SpringApplication
@@ -12,7 +13,7 @@ class SadapayAssignmentApplicationTests : BaseTest() {
 		val context =
 			SpringApplication.run(
 			    SadapayAssignmentApplication::class.java,
-			    "--spring.main.web-environment=false"
+			    DISABLE_WEB_ENV_ARG
 			)
 
 		// Verify that the context loads successfully

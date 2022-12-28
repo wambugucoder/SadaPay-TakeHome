@@ -1,5 +1,9 @@
 package com.example.sadapayassignment
 
+import com.example.sadapayassignment.Fixtures.POSTGRES_DBNAME
+import com.example.sadapayassignment.Fixtures.POSTGRES_IMAGE
+import com.example.sadapayassignment.Fixtures.POSTGRES_PASSWORD
+import com.example.sadapayassignment.Fixtures.POSTGRES_USERNAME
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.ConfigurableApplicationContext
 import org.springframework.core.env.PropertiesPropertySource
@@ -14,10 +18,10 @@ class TestContainer : ApplicationContextInitializer<ConfigurableApplicationConte
     companion object {
 
         @Container
-        val container = PostgreSQLContainer<Nothing>("postgres:11.5").apply {
-            withDatabaseName("testDb")
-            withUsername("test")
-            withPassword("test")
+        val container = PostgreSQLContainer<Nothing>(POSTGRES_IMAGE).apply {
+            withDatabaseName(POSTGRES_DBNAME)
+            withUsername(POSTGRES_USERNAME)
+            withPassword(POSTGRES_PASSWORD)
             start()
         }
     }

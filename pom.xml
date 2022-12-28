@@ -175,6 +175,7 @@
 					</execution>
 				</executions>
 				<configuration>
+					<rules></rules>
 					<excludes>
 						<exclude>**/model/**/*</exclude>
 					</excludes>
