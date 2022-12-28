@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.SpringApplication
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
@@ -27,7 +26,7 @@ import java.sql.DriverManager
 import javax.sql.DataSource
 
 @AutoConfigureMockMvc
-internal class ComponentTest : BaseTest() {
+internal class ComponentTest : AbstractContextTest() {
 
     @Autowired
     lateinit var mockMvc: MockMvc
@@ -96,7 +95,6 @@ internal class ComponentTest : BaseTest() {
 
     @Test
     fun `test to confirm the only active profile on a normal startup`() {
-        val context = SpringApplication.run(SadapayAssignmentApplication::class.java)
         val activeProfiles = context.environment.activeProfiles
         Assertions.assertTrue(activeProfiles.containsAllSpecifiedElements(arrayOf("dev")))
     }
