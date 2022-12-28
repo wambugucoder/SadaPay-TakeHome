@@ -4,11 +4,8 @@ import com.example.sadapayassignment.TestContainer.Companion.container
 import liquibase.Liquibase
 import liquibase.database.DatabaseFactory
 import liquibase.database.jvm.JdbcConnection
-import liquibase.exception.LiquibaseException
 import liquibase.resource.ClassLoaderResourceAccessor
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
-import org.mockito.Mockito.*
 import org.springframework.test.context.ContextConfiguration
 import java.sql.DriverManager
 
@@ -30,12 +27,5 @@ class LiquibaseTest {
         assertNoExceptionsEncountered {
             liquibase.validate()
         }
-    }
-
-    @Test
-    fun `verify an excpetion is thrown if validate fails`() {
-        val liquibase = mock(Liquibase::class.java)
-        `when`(liquibase.validate()).thenThrow(LiquibaseException::class.java)
-        assertThrows<LiquibaseException> { liquibase.validate() }
     }
 }

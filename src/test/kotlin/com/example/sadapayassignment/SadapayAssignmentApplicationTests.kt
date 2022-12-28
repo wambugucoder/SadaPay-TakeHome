@@ -2,11 +2,8 @@ package com.example.sadapayassignment
 
 import org.assertj.core.api.AssertionsForInterfaceTypes.*
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestInstance
-import org.mockito.Mockito.*
 import org.springframework.boot.SpringApplication
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class SadapayAssignmentApplicationTests : BaseTest() {
 
 	@Test
