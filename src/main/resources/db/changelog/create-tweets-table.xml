@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="create-tweet-table" author="liquibase">
+        <createTable tableName="tweets_table">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="tweet_context" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="add-foreign-key-constraint" author="liquibase">
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="tweets_table"
+                                 constraintName="fk_tweet_user"
+                                 referencedColumnNames="id"
+                                 referencedTableName="users_table"/>
+    </changeSet>
+
+</databaseChangeLog>

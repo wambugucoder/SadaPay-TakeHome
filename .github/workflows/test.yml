@@ -1,0 +1,25 @@
+name: Linting and Testing
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  test-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Java 11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Set up Docker
+        uses: docker://docker:stable
+      - name: Build and test
+        run: |
+          docker-compose up -d
+          mvn clean test
+          docker-compose down
