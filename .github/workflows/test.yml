@@ -21,6 +21,4 @@ jobs:
         uses: docker://docker:stable
       - name: Build and test
         run: |
-          docker-compose up -d
           mvn clean test
-          docker-compose down
