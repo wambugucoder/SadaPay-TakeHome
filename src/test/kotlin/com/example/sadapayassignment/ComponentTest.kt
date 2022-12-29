@@ -71,7 +71,7 @@ internal class ComponentTest : BaseTest() {
         }
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Testing package name {0}")
     @ValueSource(strings = [REPO_PACKAGE, MODEL_PACKAGE])
     fun `test that all files under specific packages are annotated as required`(packageName: String) {
         val retrievedClasses = getClassesInPackage(packageName)

@@ -1,6 +1,5 @@
 package com.example.sadapayassignment.model
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
@@ -19,6 +18,5 @@ data class User(
     val age: Int
 ) {
     @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
-    @JsonIgnore
     val tweets: List<Tweet> = emptyList()
 }
