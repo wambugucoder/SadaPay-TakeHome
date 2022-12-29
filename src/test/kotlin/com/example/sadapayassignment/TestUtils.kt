@@ -31,6 +31,17 @@ fun <T> configureMocks(vararg mocks: T, block: T.() -> Unit) {
     }
 }
 
+fun assertAllFalse(vararg functions: () -> Boolean) {
+    functions.map { it() }
+        .let { results ->
+            if (results.all { !it }) {
+                return
+            } else {
+                throw AssertionError("Assertion failed")
+            }
+        }
+}
+
 fun getClassesInPackage(packageName: String): List<Class<*>> {
     val classLoader = Thread.currentThread().contextClassLoader
     val packagePath = packageName.replace(".", "/")

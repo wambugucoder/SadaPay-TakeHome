@@ -2,7 +2,6 @@ package com.example.sadapayassignment
 
 import com.example.sadapayassignment.Fixtures.MODEL_PACKAGE
 import com.example.sadapayassignment.Fixtures.REPO_PACKAGE
-import com.example.sadapayassignment.utils.containsAllSpecifiedElements
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.swagger.v3.oas.models.OpenAPI
 import liquibase.Liquibase
@@ -94,7 +93,7 @@ internal class ComponentTest : AbstractContextTest() {
 
     @Test
     fun `test to confirm the only active profile on a normal startup`() {
-        val activeProfiles = context.environment.activeProfiles
-        Assertions.assertTrue(activeProfiles.containsAllSpecifiedElements(arrayOf("dev")))
+        val activeProfiles = context.environment.activeProfiles.toList()
+        Assertions.assertTrue(activeProfiles.containsAll(listOf("dev")))
     }
 }
