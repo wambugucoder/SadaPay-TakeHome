@@ -94,6 +94,6 @@ internal class ComponentTest : AbstractContextTest() {
     @Test
     fun `test to confirm the only active profile on a normal startup`() {
         val activeProfiles = context.environment.activeProfiles.toList()
-        Assertions.assertTrue(activeProfiles.containsAll(listOf("dev")))
+        Assertions.assertTrue(activeProfiles.containsAll(listOf("test")))
     }
 }
