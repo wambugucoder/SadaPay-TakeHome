@@ -7,9 +7,8 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 @OpenAPIDefinition(info = Info(title = "SadaPay Test API", version = "1.0", description = "API playground for SadaPay"))
-class SadapayAssignmentApplication {
+class SadapayAssignmentApplication
 
-	fun main(args: Array<String>) {
-		runApplication<SadapayAssignmentApplication>(*args)
-	}
+fun main(args: Array<String>) {
+    runApplication<SadapayAssignmentApplication>(*args)
 }
