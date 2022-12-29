@@ -15,6 +15,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
+import org.springframework.context.ApplicationContext
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.stereotype.Repository
 import org.springframework.test.web.servlet.MockMvc
@@ -24,7 +25,7 @@ import java.sql.DriverManager
 import javax.sql.DataSource
 
 @AutoConfigureMockMvc
-internal class ComponentTest : AbstractContextTest() {
+internal class ComponentTest : BaseTest() {
 
     @Autowired
     lateinit var mockMvc: MockMvc
@@ -34,6 +35,9 @@ internal class ComponentTest : AbstractContextTest() {
 
     @Autowired
     private lateinit var dataSource: DataSource
+
+    @Autowired
+    private lateinit var context: ApplicationContext
 
     @Test
     fun `test that Swagger works correctly`() {
