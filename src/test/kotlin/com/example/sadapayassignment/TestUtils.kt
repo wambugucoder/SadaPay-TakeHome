@@ -1,7 +1,6 @@
 package com.example.sadapayassignment
 
 import com.example.sadapayassignment.model.User
-import io.mockk.every
 import org.assertj.core.api.AssertionsForInterfaceTypes.*
 import java.io.File
 import java.net.URLDecoder
@@ -24,24 +23,6 @@ fun <T> assertIgnoringId(expected: T, actual: T) {
         .ignoringFields(*fieldsToIgnore.toTypedArray())
         .isEqualTo(expected)
 }
-
-fun <T> configureMocks(vararg mocks: T, block: T.() -> Unit) {
-    mocks.forEach { mock ->
-        every { mock.block() }
-    }
-}
-
-fun assertAllFalse(vararg functions: () -> Boolean) {
-    functions.map { it() }
-        .let { results ->
-            if (results.all { !it }) {
-                return
-            } else {
-                throw AssertionError("Assertion failed")
-            }
-        }
-}
-
 fun getClassesInPackage(packageName: String): List<Class<*>> {
     val classLoader = Thread.currentThread().contextClassLoader
     val packagePath = packageName.replace(".", "/")

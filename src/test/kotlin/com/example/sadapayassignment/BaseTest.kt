@@ -8,7 +8,9 @@ import org.springframework.test.context.TestPropertySource
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
 @ExtendWith(SpringExtension::class)
-@SpringBootTest
+@SpringBootTest(
+    webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+)
 @ActiveProfiles("test")
 @ContextConfiguration(initializers = [TestContainer::class])
 @TestPropertySource(locations = ["classpath:application-test.properties"])
