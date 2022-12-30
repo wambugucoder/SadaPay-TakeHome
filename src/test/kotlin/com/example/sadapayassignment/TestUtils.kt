@@ -1,6 +1,9 @@
 package com.example.sadapayassignment
 
+import com.example.sadapayassignment.config.Transactor
 import com.example.sadapayassignment.model.User
+import io.mockk.every
+import io.mockk.mockk
 import org.assertj.core.api.AssertionsForInterfaceTypes.*
 import java.io.File
 import java.net.URLDecoder
@@ -45,4 +48,13 @@ fun getClassesInPackage(packageName: String): List<Class<*>> {
         }
     }
     return classes
+}
+
+fun <T : Any> createTransactionMock(): Transactor {
+    val transactor = mockk<Transactor>()
+    every { transactor.inTransaction(any<() -> T>())!! } answers {
+        val saveFunc = arg<() -> T>(0)
+        saveFunc()
+    }
+    return transactor
 }
