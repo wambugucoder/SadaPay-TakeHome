@@ -35,7 +35,8 @@ jobs:
                       -Dsonar.host.url=${{secrets.SONAR_URL }} \
                       -Dsonar.login=${{secrets.SONAR_TOKEN }}
       - name: Send Slack notification
-        uses: slack/slack-notify@v1
+        uses: abinoda/slack-action@master
         with:
           slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
           text: "Test action has ${{ job.status }}."
+          channel: ${{ secrets.SLACK_CHANNEL_ID }}
