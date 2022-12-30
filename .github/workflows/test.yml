@@ -37,6 +37,6 @@ jobs:
       - name: Send Slack notification
         uses: abinoda/slack-action@master
         with:
-          slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
+          slack_bot_token: ${{secrets.SLACK_BOT_TOKEN }}
           text: "Test action has ${{ job.status }}."
-          channel: ${{ secrets.SLACK_CHANNEL_ID }}
+          channel: ${{secrets.SLACK_CHANNEL_ID }}
