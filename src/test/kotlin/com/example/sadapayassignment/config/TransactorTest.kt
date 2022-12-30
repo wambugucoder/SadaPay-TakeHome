@@ -6,10 +6,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 internal class TransactorTest {
-
+    private val transactor = createTransactionMock<Int>()
     @Test
     fun `inTransaction should execute lambda expression within transaction`() {
-        val transactor = createTransactionMock<Int>()
         val result = transactor.inTransaction {
             1 + 1
         }
@@ -18,7 +17,6 @@ internal class TransactorTest {
 
     @Test
     fun `inTransaction should handle exceptions thrown within transaction block`() {
-        val transactor = createTransactionMock<Int>()
         assertThrows<IllegalArgumentException> {
             transactor.inTransaction<Int> {
                 throw IllegalArgumentException()
