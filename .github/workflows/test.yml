@@ -33,4 +33,15 @@ jobs:
                       -Dsonar.projectKey=${{secrets.PROJECT_KEY }}\
                       -Dsonar.organization=${{secrets.SONAR_ORG }} \
                       -Dsonar.host.url=${{secrets.SONAR_URL }} \
-                      -Dsonar.login=${{secrets.SONAR_TOKEN }} 
+                      -Dsonar.login=${{secrets.SONAR_TOKEN }}
+      - name: Set up Slack bot
+        uses: rtCamp/action-slack-bot@v3
+        with:
+          slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
+
+      - name: Send Slack notification
+        if: always()
+        uses: rtCamp/action-slack-bot@v3
+        with:
+          slack_bot_token: ${{ secrets.SLACK_BOT_TOKEN }}
+          text: "Build started by ${{ github.actor }} has ${{ job.status }}."
