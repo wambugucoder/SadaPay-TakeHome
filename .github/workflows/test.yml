@@ -34,10 +34,69 @@ jobs:
                       -Dsonar.organization=${{secrets.SONAR_ORG }} \
                       -Dsonar.host.url=${{secrets.SONAR_URL }} \
                       -Dsonar.login=${{secrets.SONAR_TOKEN }}
-      - name: Send Slack notification
-        if: always()
+      - name: Post to a Slack channel
+        if: ${{ job.status == 'failure' }}
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: ${{secrets.SLACK_CHANNEL_ID }}
+          payload: |
+            {
+            	"blocks": [
+            		{
+            			"type": "section",
+            			"text": {
+            				"type": "mrkdwn",
+            				"text": "🚨☠️ Tests are failing! ☠️🚨"
+            			}
+            		},
+            		{
+            			"type": "section",
+            			"fields": [
+            				{
+            					"type": "mrkdwn",
+            					"text": "*Repo:*\n<https://github.com/${{ github.repository }}|${{ github.repository }} >"
+            				},
+            				{
+            					"type": "mrkdwn",
+            					"text": "*Workflow Run:*\n<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} | Workflow >"
+            				}
+            			]
+            		}
+            	]
+            }
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-        uses: abinoda/slack-action@master
+      - name: Post to a Slack channel
+        if: ${{ job.status == 'success' }}
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
         with:
-          args:'{\"channel\":\"${{ secrets.SLACK_CHANNEL_ID }}\",\"blocks\":[{"\type\":\"section\",\"text\":{\"type\":\"mrkdwn\",\"text\":\"GitHub *${{github.action}}* started by *${{github.actor}}* is *${{job.status}}*.\"}}]}'
+          channel-id: ${{secrets.SLACK_CHANNEL_ID }}
+          payload: |
+            {
+            	"blocks": [
+            		{
+            			"type": "section",
+            			"text": {
+            				"type": "mrkdwn",
+            				"text": "🎉🎉🎉 All tests passed! 🎉🎉🎉"
+            			}
+            		},
+            		{
+            			"type": "section",
+            			"fields": [
+            				{
+            					"type": "mrkdwn",
+            					"text": "*Repo:*\n<https://github.com/${{ github.repository }}|${{ github.repository }} >"
+            				},
+            				{
+            					"type": "mrkdwn",
+            					"text": "*Workflow Run:*\n<https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }} | Workflow >"
+            				}
+            			]
+            		}
+            	]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
