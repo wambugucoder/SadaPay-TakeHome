@@ -58,3 +58,8 @@ fun <T : Any> createTransactionMock(): Transactor {
     }
     return transactor
 }
+
+fun <T : Exception> T.alsoAssertResponse(block: T.() -> Unit): T {
+    block()
+    return this
+}
